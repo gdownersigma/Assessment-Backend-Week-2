@@ -1,6 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.0, pytest-9.0.1, pluggy-1.6.0
+rootdir: /home/runner/work/Assessment-Backend-Week-2/Assessment-Backend-Week-2/marine_experiments
+collected 170 items
+
+test_api.py ...............................................FFFFFFFFFFFFF [ 35%]
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                           [ 52%]
+test_queries.py ................................                         [ 71%]
+test_routes.py .........................................                 [ 95%]
+test_sql.py .......                                                      [100%]
+
+======================= 43 failed, 127 passed in 21.04s ========================
 ************* Module api
-marine_experiments/api.py:50:5: E0001: Parsing failed: 'expected an indented block after 'if' statement on line 48 (api, line 50)' (syntax-error)
+marine_experiments/api.py:14:18: W0622: Redefining built-in 'type' (redefined-builtin)
+marine_experiments/api.py:24:0: W0105: String statement has no effect (pointless-string-statement)
+marine_experiments/api.py:48:4: W0622: Redefining built-in 'type' (redefined-builtin)
+marine_experiments/api.py:46:0: R0911: Too many return statements (7/6) (too-many-return-statements)
+marine_experiments/api.py:3:0: W0611: Unused datetime imported from datetime (unused-import)
+marine_experiments/api.py:6:0: W0611: Unused sql imported from psycopg2 (unused-import)
+************* Module database_functions
+marine_experiments/database_functions.py:19:0: C0301: Line too long (135/100) (line-too-long)
+marine_experiments/database_functions.py:19:0: W0102: Dangerous default value [] as argument (dangerous-default-value)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.37/10 (previous run: 7.37/10, +0.00)
+Your code has been rated at 8.95/10 (previous run: 8.95/10, +0.00)
 
