@@ -5,10 +5,21 @@ from datetime import datetime
 from flask import Flask, jsonify, request
 from psycopg2 import sql
 
-from database_functions import get_db_connection
+from database_functions import get_db_connection, get_all_experiments
 
 
 app = Flask(__name__)
+
+
+def validate_type(type: str) -> bool:
+    '''Return if type query is valid.'''
+    return type in {'intelligence', 'obedience', 'aggression'}
+
+
+def validate_score_over(threshold: str) -> int:
+    '''Return if threshold query is valid.'''
+    return threshold in range(0, 101)
+
 
 """
 For testing reasons; please ALWAYS use this connection. 
@@ -30,6 +41,14 @@ def home():
         "status": "Classified"
     })
 
+
+@app.route("/experiment", methods=['GET'])
+def experiment():
+    """API endpoint for accessing experiment."""
+    if request.args.get('type', False):
+
+    result = get_all_experiments(conn)
+    return result, 200
 
 
 if __name__ == "__main__":
