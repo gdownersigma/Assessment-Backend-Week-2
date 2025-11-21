@@ -9,7 +9,7 @@ test_queries.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                         [ 71%]
 test_routes.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                 [ 95%]
 test_sql.py FFFFFFF                                                      [100%]
 
-======================== 170 failed, 1 passed in 20.55s ========================
+======================== 170 failed, 1 passed in 20.64s ========================
 ************* Module api
 marine_experiments/api.py:3:0: W0611: Unused datetime imported from datetime (unused-import)
 marine_experiments/api.py:5:0: W0611: Unused request imported from flask (unused-import)
