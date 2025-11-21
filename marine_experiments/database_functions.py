@@ -16,23 +16,25 @@ def get_db_connection(dbname,
                    cursor_factory=RealDictCursor)
 
 
-def get_all_experiments(conn: connection) -> list[dict]:
+def get_all_experiments(conn: connection, threshold: int = 0, types: list = ['intelligence', 'obedience', 'aggression']) -> list[dict]:
     """Return a list of all the experiments as dictionaries."""
     cur = conn.cursor()
-    cur.execute("SELECT experiment_id,\
-       subject_id,\
-       species_name AS species,\
-       experiment_date,\
-       type_name AS experiment_type,\
-       ROUND(((score/max_score)*100)::NUMERIC,2)AS score\
-    FROM experiment\
-    JOIN subject\
-        USING (subject_id)\
-    JOIN experiment_type\
-        USING (experiment_type_id)\
-    JOIN species\
-        USING (species_id)\
-    ORDER BY experiment_date DESC;")
+    cur.execute("""SELECT experiment_id,
+       subject_id,
+       species_name AS species,
+       experiment_date,
+       type_name AS experiment_type,
+       ROUND(((score/max_score)*100)::NUMERIC,2)AS score
+    FROM experiment
+    JOIN subject
+        USING (subject_id)
+    JOIN experiment_type
+        USING (experiment_type_id)
+    JOIN species
+        USING (species_id) 
+    WHERE ROUND(((score/max_score)*100)::NUMERIC,2) > %s 
+    AND type_name = ANY(%s)
+    ORDER BY experiment_date DESC;""", (threshold, types))
     results = cur.fetchall()
     for result in results:
         result['experiment_date'] = datetime.strftime(
@@ -40,6 +42,20 @@ def get_all_experiments(conn: connection) -> list[dict]:
         result['score'] = str(result['score'])
     cur.close()
     return results
+
+
+def delete_experiment_from_id(conn: connection, experiment_id: int) -> dict:
+    """Deletes an experiment from the database."""
+    cur = conn.cursor()
+    cur.execute(
+        """DELETE FROM experiment WHERE experiment_id = %s RETURNING *""", (experiment_id,))
+    deleted = cur.fetchone()
+    conn.commit()
+    cur.close()
+    if deleted:
+        deleted['experiment_date'] = datetime.strftime(
+            deleted['experiment_date'], '%Y-%m-%d')
+    return deleted
 
 
 if __name__ == '__main__':
