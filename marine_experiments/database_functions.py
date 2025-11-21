@@ -16,6 +16,7 @@ def get_db_connection(dbname,
                    cursor_factory=RealDictCursor)
 
 
+# pylint: disable=line-too-long, dangerous-default-value
 def get_all_experiments(conn: connection, threshold: int = 0, types: list = ['intelligence', 'obedience', 'aggression']) -> list[dict]:
     """Return a list of all the experiments as dictionaries."""
     cur = conn.cursor()

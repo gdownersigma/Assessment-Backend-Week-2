@@ -1,9 +1,8 @@
+# pylint: disable=pointless-string-statement, too-many-return-statements
+
 """An API for handling marine experiments."""
 
-from datetime import datetime
-
 from flask import Flask, jsonify, request
-from psycopg2 import sql
 
 from database_functions import get_db_connection, get_all_experiments, delete_experiment_from_id
 
@@ -11,9 +10,9 @@ from database_functions import get_db_connection, get_all_experiments, delete_ex
 app = Flask(__name__)
 
 
-def validate_type(type: str) -> bool:
+def validate_type(exp_type: str) -> bool:
     '''Return if type query is valid.'''
-    return type.lower() in {'intelligence', 'obedience', 'aggression'}
+    return exp_type.lower() in {'intelligence', 'obedience', 'aggression'}
 
 
 def validate_score_over(threshold: str) -> int:
@@ -45,11 +44,11 @@ def home():
 @app.get("/experiment")
 def experiment():
     """API endpoint for accessing experiment."""
-    type = request.args.get('type', False)
+    exp_type = request.args.get('type', False)
     score_over = request.args.get('score_over', False)
 
-    if type and score_over:
-        if not validate_type(type):
+    if exp_type and score_over:
+        if not validate_type(exp_type):
             return {
                 'error': "Invalid value for 'type' parameter",
             }, 400
@@ -62,13 +61,13 @@ def experiment():
             return {
                 'error': "Invalid value for 'score_over' parameter"
             }, 400
-        result = get_all_experiments(conn, score_over, [type.lower()])
-    elif type:
-        if not validate_type(type):
+        result = get_all_experiments(conn, score_over, [exp_type.lower()])
+    elif exp_type:
+        if not validate_type(exp_type):
             return {
                 'error': "Invalid value for 'type' parameter",
             }, 400
-        result = get_all_experiments(conn, types=[type.lower()])
+        result = get_all_experiments(conn, types=[exp_type.lower()])
     elif score_over:
         try:
             if not validate_score_over(int(score_over)):
