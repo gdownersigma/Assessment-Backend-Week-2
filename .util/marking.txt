@@ -5,11 +5,11 @@ collected 171 items
 
 test_api.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.FFFFFFFFFFF [ 35%]
 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                          [ 53%]
-test_queries.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                         [ 71%]
+test_queries.py ....F....F....F....FFFFFFFFFFFFF                         [ 71%]
 test_routes.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                 [ 95%]
-test_sql.py FFFFFFF                                                      [100%]
+test_sql.py ...FFFF                                                      [100%]
 
-======================== 170 failed, 1 passed in 20.64s ========================
+======================= 151 failed, 20 passed in 20.16s ========================
 ************* Module api
 marine_experiments/api.py:3:0: W0611: Unused datetime imported from datetime (unused-import)
 marine_experiments/api.py:5:0: W0611: Unused request imported from flask (unused-import)
