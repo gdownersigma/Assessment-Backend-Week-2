@@ -1,7 +1,6 @@
 # pylint: disable=pointless-string-statement, too-many-return-statements
 
 """An API for handling marine experiments."""
-
 from flask import Flask, jsonify, request
 
 from database_functions import get_db_connection, get_all_experiments, delete_experiment_from_id
@@ -41,7 +40,7 @@ def home():
     })
 
 
-@app.get("/experiment")
+@app.route("/experiment", methods=['GET'])
 def experiment():
     """API endpoint for accessing experiment."""
     exp_type = request.args.get('type', False)
