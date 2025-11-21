@@ -1,22 +1,6 @@
-============================= test session starts ==============================
-platform linux -- Python 3.14.0, pytest-9.0.1, pluggy-1.6.0
-rootdir: /home/runner/work/Assessment-Backend-Week-2/Assessment-Backend-Week-2/marine_experiments
-collected 171 items
-
-test_api.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.FFFFFFFFFFF [ 35%]
-FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                          [ 53%]
-test_queries.py ....F....F....F....FFFFFFFFFFFFF                         [ 71%]
-test_routes.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                 [ 95%]
-test_sql.py ...FFFF                                                      [100%]
-
-======================= 151 failed, 20 passed in 20.16s ========================
 ************* Module api
-marine_experiments/api.py:3:0: W0611: Unused datetime imported from datetime (unused-import)
-marine_experiments/api.py:5:0: W0611: Unused request imported from flask (unused-import)
-marine_experiments/api.py:6:0: W0611: Unused sql imported from psycopg2 (unused-import)
-************* Module database_functions
-marine_experiments/database_functions.py:16:0: C0304: Final newline missing (missing-final-newline)
+marine_experiments/api.py:50:5: E0001: Parsing failed: 'expected an indented block after 'if' statement on line 48 (api, line 50)' (syntax-error)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.89/10 (previous run: 7.89/10, +0.00)
+Your code has been rated at 7.37/10 (previous run: 7.37/10, +0.00)
 
